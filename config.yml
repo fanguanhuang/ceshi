@@ -1,8 +1,18 @@
-robot_name_cn: '孙悟空'
-first_name: 'tf'
-last_name: 'boy'
+robot_name_cn: '小白'
+first_name: '師父'
+last_name: '唐'
 timezone: HKT
-location: '深圳'
+location: '杭州'
+## 本地音乐插件
+LocalPlayer:
+    path: "/home/pi/Users/tangshifu/music"  # 本地音乐存放路径
+# 出行线路规划插件
+# 百度LBS Web服务API
+# http://lbsyun.baidu.com/index.php?title=webapi
+direction:
+    app_key: nxZzKjee3VOby3fuDIDqh7MRX337VPkZ
+    origin: 120.401806,30.326721
+#出发起始地坐标，可在此http://api.map.baidu.com/lbsapi/getpoint/获取，如:"39.91405,116.404269",纬度在前，经度在后
 
 # 后台管理端
 server:
@@ -12,22 +22,22 @@ server:
     username: 'wukong'  # 用户名
     # 密码的 md5，可以用 python wukong.py md5 "密码" 获得
     # 初始密码为 wukong@2019
-    validate: 'f4bde2a342c7c75aa276f78b26cfbd8a'
+    validate: '727591b00b13a987eb2a1731faeff38cca60040c'
 
 # snowboy 离线唤醒
 # https://snowboy.kitt.ai/dashboard
 # 建议到 https://snowboy.kitt.ai/hotword/32768
 # 使用相同环境录入你的语音，以提升唤醒成功率和准确率
-hotword: 'snowboy.pmdl'  # 唤醒词模型，如要自定义请放到 $HOME/.wukong 目录中
-sensitivity: 0.4  # 灵敏度
+hotword: 'xiaobai.pmdl'  # 唤醒词模型，如要自定义请放到 $HOME/.wukong 目录中
+sensitivity: 0.5  # 灵敏度
 
 # 勿扰模式，该时间段内自动进入睡眠，避免监听
 do_not_bother:
     enable: false # 开启勿扰模式
     since: 23    # 开始时间
     till: 9      # 结束时间，如果比 since 小表示第二天
-    on_hotword: '悟空别吵.pmdl'  # 通过这个唤醒词可切换勿扰模式。默认是“悟空别吵”
-    off_hotword: '悟空醒醒.pmdl'  # 通过这个唤醒词可切换勿扰模式。默认是“悟空醒醒”
+    on_hotword: 'xiaobaibiechao.pmdl'  # 通过这个唤醒词可切换勿扰模式。默认是“悟空别吵”
+    off_hotword: 'xiaobaixingxing.pmdl'  # 通过这个唤醒词可切换勿扰模式。默认是“悟空醒醒”
 
 # 语音合成服务配置
 # 可选值：
@@ -43,14 +53,14 @@ tts_engine: baidu-tts
 # xunfei-asr    - 讯飞语音识别
 # ali-asr       - 阿里语音识别
 # tencent-asr   - 腾讯云语音识别（推荐）
-asr_engine: baidu-asr
+asr_engine: tencent-asr
 
 # 百度语音服务
 # http://yuyin.baidu.com/
 baidu_yuyin:
-    appid: '11155394'
-    api_key: 'SsjndsbxxVkI2kZPGNRXDsjB'   # 建议使用自己的百度语音APP的API Key
-    secret_key: 'hSAQmlrzKNIDuGEAh650z1fxO35NwuT0'
+    appid: '18457666'
+    api_key: '7fIquGY2aoLHbLEeRH2ELTaR'   # 建议使用自己的百度语音APP的API Key
+    secret_key: 'y0Kwwy2jmjQH0vCwe0nBBmaD4QIBMg2o'
     per: 0  # 发音人选择 0：女生；1：男生；3：度逍遥；4：度丫丫
     lan: 'zh'
 
@@ -83,9 +93,9 @@ ali_yuyin:
 # 创建子用户，访问API密钥获得 secretid 和 secret_key
 # 注册获取
 tencent_yuyin:
-    appid: '1253537070'
-    secretid: 'AKID7C7JK9QomcWJUjcsKbK8iLQjhju8fC3z'
-    secret_key: '2vhKRVSn4mXQ9PiT7eOtBqQhR5Z6IvPn'
+    appid: '1301273437'
+    secretid: 'AKIDKSN3UgThLq7SaVbeWDgzBAxdHVf58Dxf'
+    secret_key: 'fHo6DxWsfVYfZGAtzta6QaWgnBLJ5ShD'
     region: 'ap-guangzhou'  # 服务地区，有效值：http://suo.im/4EEQYD
     voiceType: 0            # 0: 女声1；1：男生1；2：男生2
     language: 1             # 1: 中文；2：英文
@@ -99,39 +109,41 @@ robot: tuling
 # 图灵机器人	
 # http://www.tuling123.com
 tuling:
-    tuling_key: '0c82b2b23a434e1985a2b571df258d73'  # 建议使用自己的图灵机器人API Key
+    tuling_key: '27a41fadd03e4c4ba483b45dbc55ee62'  # 建议使用自己的图灵机器人API Key
 
 # 小影机器人
 # http://botfactory.emotibot.com/
 emotibot:
-    appid: '32ee80dddb36f1dc5356517503b3f55e'
+    appid: '01509123b03f5484cb49cbd8a4bdafd4'
     active_mode: true  # 是否主动说更多点话
 
 # 邮箱
 # 如果使用网易邮箱，还需设置允许第三方客户端收发邮件
 email:
-    enable: false
-    address: '2278336205@qq.com'
-    password: 'Hao8981409'  # 如果是网易邮箱，须填写应用授权密码而不是登录密码！
+    address: 'zx5zx5123@163.com'
+    password: 'hwj15867183053'  # 如果是网易邮箱，须填写应用授权密码而不是登录密码！
     smtp_server: 'smtp.163.com'
     smtp_port: '25'  # 这里填写非SSL协议端口号
     imap_server: 'imap.163.com'
-    imap_port: '143'  # 这里填写非SSL协议端口号    
+    imap_port: '143'  # 这里填写非SSL协议端口号
+    pop3_server: 'pop.163.com'
+    pop3_port: '110'    
     read_email_title: true  # 当有邮件时，是否朗读邮件标题
 
 # 拍照
 # 需接入摄像头才能使用
 # 注意：本插件只在树莓派5MP摄像头或者USB摄像头上测试过
 camera:
-    enable: true
-    dest_path: "/home/pi/camera" # 保存目录
+    enable: false
+    type: 0
+    dest_path: "/home/pi/Users/tangshifu/Photos" # 保存目录
     quality: 5              # 成像质量（0~100）
     vertical_flip: true     # 竖直翻转
     horizontal_flip: false  # 水平翻转
     count_down: 3           # 倒计时（秒），仅当开启倒计时时有效
     sendToUser: true        # 拍完照是否发送到邮箱
     sound: true             # 是否有拍照音效
-    usb_camera: false       # 是否是 USB 摄像头
+    usb_camera: true      # 是否是 USB 摄像头
 
 
 #######################
@@ -143,8 +155,8 @@ camera:
 
 # 网易音乐
 netease_music:
-    account: '13189556081' # 只支持手机账户
-    password: 'Hao8981409'
+    account: '15867183053' # 只支持手机账户
+    password: 'hwj15867183053'
     report: true    # 是否播报即将播放的音乐
 
 
@@ -152,13 +164,8 @@ netease_music:
 # 使用心知天气的接口
 # https://www.seniverse.com/
 weather:
-    key: 'nuedpt4wwfaeyd1g'
-    location: '茂名'
-
-#台灯
-Lamp:
-    pin: 7  # 实际控制电平的管脚
+    key: 'Pk4FqtHkVB5sEI3kK'
+    location: '杭州'
 
 baidufm:
-    channel: 13  # 默认频道，如果没有配置，默认选择90后频道
-
+    channel: 35  # 默认频道，如果没有配置，默认选择90后频道，更多频道见下表
