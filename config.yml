@@ -1,171 +1,231 @@
-robot_name_cn: 'å°ç™½'
-first_name: 'å¸«çˆ¶'
-last_name: 'å”'
+robot_name_cn: 'ËïÎò¿Õ'
+first_name: 'Ê¦¸¸'
+last_name: 'ÌÆ'
 timezone: HKT
-location: 'æ­å·'
-## æœ¬åœ°éŸ³ä¹æ’ä»¶
-LocalPlayer:
-    path: "/home/pi/Users/tangshifu/music"  # æœ¬åœ°éŸ³ä¹å­˜æ”¾è·¯å¾„
-# å‡ºè¡Œçº¿è·¯è§„åˆ’æ’ä»¶
-# ç™¾åº¦LBS WebæœåŠ¡API
-# http://lbsyun.baidu.com/index.php?title=webapi
-direction:
-    app_key: nxZzKjee3VOby3fuDIDqh7MRX337VPkZ
-    origin: 120.401806,30.326721
-#å‡ºå‘èµ·å§‹åœ°åæ ‡ï¼Œå¯åœ¨æ­¤http://api.map.baidu.com/lbsapi/getpoint/è·å–ï¼Œå¦‚:"39.91405,116.404269",çº¬åº¦åœ¨å‰ï¼Œç»åº¦åœ¨å
+location: 'ÉîÛÚ'
 
-# åå°ç®¡ç†ç«¯
+# ºóÌ¨¹ÜÀí¶Ë
 server:
+    enable: true
+    host: '0.0.0.0'  # ip µØÖ·
+    port: '5000'     # ¶Ë¿ÚºÅ    
+    username: 'wukong'  # ÓÃ»§Ãû
+    # cookie µÄ secret £¬ÓÃÓÚ¶Ô cookie µÄÄÚÈİ½øĞĞ¼ÓÃÜ¼°·ÀÖ¹´Û¸Ä
+    # ½¨ÒéÊ¹ÓÃ os.urandom(24) Éú³ÉÒ»´®Ëæ»ú×Ö·û´®
+    # Ç¿ÁÒ½¨ÒéĞŞ¸Ä!!!
+    cookie_secret: '__GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__'
+    # ÃÜÂëµÄ md5£¬¿ÉÒÔÓÃ python3 wukong.py md5 "ÃÜÂë" »ñµÃ
+    # ³õÊ¼ÃÜÂëÎª wukong@2019
+    # Ç¿ÁÒ½¨ÒéĞŞ¸Ä!!!
+    validate: 'f4bde2a342c7c75aa276f78b26cfbd8a'
+
+# Muse ÄÔ»ú
+# ÍÆ¼ö´îÅä Muse Monitor Ê¹ÓÃ
+# ²¢¿ªÆô OSC stream
+# Í¬Ê±Õ£ÑÛºÍÒ§ÑÀ³İ¿ÉÒÔÊµÏÖ»½ĞÑ
+muse:
     enable: false
-    host: '0.0.0.0'  # ip åœ°å€
-    port: '5000'     # ç«¯å£å·    
-    username: 'wukong'  # ç”¨æˆ·å
-    # å¯†ç çš„ md5ï¼Œå¯ä»¥ç”¨ python wukong.py md5 "å¯†ç " è·å¾—
-    # åˆå§‹å¯†ç ä¸º wukong@2019
-    validate: '727591b00b13a987eb2a1731faeff38cca60040c'
+    ip: '0.0.0.0'  # ÇëĞŞ¸ÄÎª±¾»úµÄ ip µØÖ·
+    port: 5001     # ÇëĞŞ¸ÄÎª OSC µÄ¶Ë¿ÚºÅ
 
-# snowboy ç¦»çº¿å”¤é†’
+# ÊÇ·ñÕ¹Ê¾µÆ¹âĞ§¹û
+# Ö§³Ö Respeaker 2 Mics ºÍ Google AIY Voice Kit Á½ÖÖ
+# ±ØĞë¾ß±¸ÏàÓ¦µÄÓ²¼şºÍÇı¶¯
+LED:
+    enable: false
+    type: aiy  # aiy: Google AIY Voice Kit; respeaker£ºrespeaker 2Mics
+
+# snowboy ÀëÏß»½ĞÑ
 # https://snowboy.kitt.ai/dashboard
-# å»ºè®®åˆ° https://snowboy.kitt.ai/hotword/32768
-# ä½¿ç”¨ç›¸åŒç¯å¢ƒå½•å…¥ä½ çš„è¯­éŸ³ï¼Œä»¥æå‡å”¤é†’æˆåŠŸç‡å’Œå‡†ç¡®ç‡
-hotword: 'xiaobai.pmdl'  # å”¤é†’è¯æ¨¡å‹ï¼Œå¦‚è¦è‡ªå®šä¹‰è¯·æ”¾åˆ° $HOME/.wukong ç›®å½•ä¸­
-sensitivity: 0.5  # çµæ•åº¦
+# ½¨Òéµ½ https://snowboy.kitt.ai/hotword/32768
+# Ê¹ÓÃÏàÍ¬»·¾³Â¼ÈëÄãµÄÓïÒô£¬ÒÔÌáÉı»½ĞÑ³É¹¦ÂÊºÍ×¼È·ÂÊ
+hotword: 'wukong.pmdl'  # »½ĞÑ´ÊÄ£ĞÍ£¬ÈçÒª×Ô¶¨ÒåÇë·Åµ½ $HOME/.wukong Ä¿Â¼ÖĞ
+sensitivity: 0.4  # ÁéÃô¶È
+silent_threshold: 15 # ÅĞ¶ÏÎª¾²ÒôµÄãĞÖµ¡£»·¾³±È½Ï³³ÔÓµÄµØ·½¿ÉÒÔÊÊµ±µ÷´ó
+recording_timeout: 5 # Â¼ÖÆµÄÓïÒô×î´ó³¤¶È£¨Ãë£©
+snowboy_token: your_token # ÄãµÄtoken£¬ÓÃÓÚ train ÃüÁîÑµÁ·ÓïÒô
 
-# å‹¿æ‰°æ¨¡å¼ï¼Œè¯¥æ—¶é—´æ®µå†…è‡ªåŠ¨è¿›å…¥ç¡çœ ï¼Œé¿å…ç›‘å¬
+# µ±»úÆ÷ÈË·´ÎÊÓÃ»§Ê±£¬ÊÇ·ñ×Ô¶¯½øÈëÏÂÒ»ÂÖñöÌı
+active_mode: true
+
+# ÎğÈÅÄ£Ê½£¬¸ÃÊ±¼ä¶ÎÄÚ×Ô¶¯½øÈëË¯Ãß£¬±ÜÃâ¼àÌı
 do_not_bother:
-    enable: false # å¼€å¯å‹¿æ‰°æ¨¡å¼
-    since: 23    # å¼€å§‹æ—¶é—´
-    till: 9      # ç»“æŸæ—¶é—´ï¼Œå¦‚æœæ¯” since å°è¡¨ç¤ºç¬¬äºŒå¤©
-    on_hotword: 'xiaobaibiechao.pmdl'  # é€šè¿‡è¿™ä¸ªå”¤é†’è¯å¯åˆ‡æ¢å‹¿æ‰°æ¨¡å¼ã€‚é»˜è®¤æ˜¯â€œæ‚Ÿç©ºåˆ«åµâ€
-    off_hotword: 'xiaobaixingxing.pmdl'  # é€šè¿‡è¿™ä¸ªå”¤é†’è¯å¯åˆ‡æ¢å‹¿æ‰°æ¨¡å¼ã€‚é»˜è®¤æ˜¯â€œæ‚Ÿç©ºé†’é†’â€
+    enable: false # true: ¿ªÆô; false: ¹Ø±Õ
+    since: 23    # ¿ªÊ¼Ê±¼ä
+    till: 9      # ½áÊøÊ±¼ä£¬Èç¹û±È since Ğ¡±íÊ¾µÚ¶şÌì
+    hotword_switch: false  # ÊÇ·ñÊ¹ÓÃ»½ĞÑ´Ê¿ª¹Ø»½ĞÑÄ£Ê½
+    on_hotword: 'Îò¿Õ±ğ³³.pmdl'  # Í¨¹ıÕâ¸ö»½ĞÑ´Ê¿ÉÇĞ»»ÎğÈÅÄ£Ê½¡£Ä¬ÈÏÊÇ¡°Îò¿Õ±ğ³³¡±
+    off_hotword: 'Îò¿ÕĞÑĞÑ.pmdl'  # Í¨¹ıÕâ¸ö»½ĞÑ´Ê¿ÉÇĞ»»ÎğÈÅÄ£Ê½¡£Ä¬ÈÏÊÇ¡°Îò¿ÕĞÑĞÑ¡±
 
-# è¯­éŸ³åˆæˆæœåŠ¡é…ç½®
-# å¯é€‰å€¼ï¼š
-# baidu-tts     - ç™¾åº¦è¯­éŸ³åˆæˆï¼ˆæ¨èï¼‰
-# xunfei-tts    - è®¯é£è¯­éŸ³åˆæˆ
-# ali-tts       - é˜¿é‡Œè¯­éŸ³åˆæˆï¼ˆæ¨èï¼‰
-# tencent-tts   - è…¾è®¯äº‘è¯­éŸ³åˆæˆï¼ˆæ¨èï¼‰
-tts_engine: baidu-tts
+# ÊÇ·ñ¶¨ÆÚÇåÀítempÄ¿Â¼ÏÂµÄ»º´æÒôÆµ
+lru_cache:
+    enable: true # true: ¿ªÆô; false: ¹Ø±Õ
+    days: 7 # ÇåÀí³¬¹ı¶àÉÙÌìÃ»ÓĞÊ¹ÓÃµÄÎÄ¼ş
 
-# è¯­éŸ³è¯†åˆ«æœåŠ¡é…ç½®
-# å¯é€‰å€¼ï¼š
-# baidu-asr     - ç™¾åº¦åœ¨çº¿è¯­éŸ³è¯†åˆ«
-# xunfei-asr    - è®¯é£è¯­éŸ³è¯†åˆ«
-# ali-asr       - é˜¿é‡Œè¯­éŸ³è¯†åˆ«
-# tencent-asr   - è…¾è®¯äº‘è¯­éŸ³è¯†åˆ«ï¼ˆæ¨èï¼‰
-asr_engine: tencent-asr
+# ÓïÒôºÏ³É·şÎñÅäÖÃ
+# ¿ÉÑ¡Öµ£º
+# han-tts       - HanTTS
+# baidu-tts     - °Ù¶ÈÓïÒôºÏ³É£¨ÍÆ¼ö£©
+# xunfei-tts    - Ñ¶·ÉÓïÒôºÏ³É
+# ali-tts       - °¢ÀïÓïÒôºÏ³É£¨ÍÆ¼ö£©
+# tencent-tts   - ÌÚÑ¶ÔÆÓïÒôºÏ³É£¨ÍÆ¼ö£©
+tts_engine: xunfei-tts
 
-# ç™¾åº¦è¯­éŸ³æœåŠ¡
+# ÓïÒôÊ¶±ğ·şÎñÅäÖÃ
+# ¿ÉÑ¡Öµ£º
+# baidu-asr     - °Ù¶ÈÔÚÏßÓïÒôÊ¶±ğ
+# xunfei-asr    - Ñ¶·ÉÓïÒôÊ¶±ğ
+# ali-asr       - °¢ÀïÓïÒôÊ¶±ğ
+# tencent-asr   - ÌÚÑ¶ÔÆÓïÒôÊ¶±ğ£¨ÍÆ¼ö£©
+asr_engine: xunfei-asr
+
+# °Ù¶ÈÓïÒô·şÎñ
 # http://yuyin.baidu.com/
 baidu_yuyin:
-    appid: '18457666'
-    api_key: '7fIquGY2aoLHbLEeRH2ELTaR'   # å»ºè®®ä½¿ç”¨è‡ªå·±çš„ç™¾åº¦è¯­éŸ³APPçš„API Key
-    secret_key: 'y0Kwwy2jmjQH0vCwe0nBBmaD4QIBMg2o'
-    per: 0  # å‘éŸ³äººé€‰æ‹© 0ï¼šå¥³ç”Ÿï¼›1ï¼šç”·ç”Ÿï¼›3ï¼šåº¦é€é¥ï¼›4ï¼šåº¦ä¸«ä¸«
+    appid: '9670645'  # ½¨ÒéÊ¹ÓÃ×Ô¼ºµÄ°Ù¶ÈÓïÒôÕË»§ APPID
+    api_key: 'qg4haN8b2bGvFtCbBGqhrmZy'
+    secret_key: '585d4eccb50d306c401d7df138bb02e7'
+    dev_pid: 1936   # 1936: ÆÕÍ¨»°Ô¶³¡£¬1536£ºÆÕÍ¨»°(Ö§³Ö¼òµ¥µÄÓ¢ÎÄÊ¶±ğ)£¬80001£ºASR¼«ËÙ°æ£¨ÇëÊ¹ÓÃ×Ô¼ºµÄ°Ù¶ÈÓïÒôÕË»§ÔÙÊ¹ÓÃ£©
+    per: 1  # ·¢ÒôÈËÑ¡Ôñ 0£ºÅ®Éú£»1£ºÄĞÉú£»3£º¶ÈåĞÒ££»4£º¶ÈÑ¾Ñ¾
     lan: 'zh'
 
-# è®¯é£è¯­éŸ³æœåŠ¡
-# appid åŠ api_key éœ€å‰å¾€
-# https://xfyun.cn/
-# æ³¨å†Œåˆ›å»ºæ˜¯WebAPIåº”ç”¨ï¼Œå¹¶èµ‹äºˆè¯­éŸ³å¬å†™åŠåœ¨çº¿è¯­éŸ³åˆæˆä¸¤é¡¹èƒ½åŠ›
-# ç„¶åå°†å¤–ç½‘ipåœ°å€æ·»åŠ è¿›ipç™½åå•ï¼ˆå¤–ç½‘ipæŸ¥è¯¢ï¼šhttps://ip.51240.com/ï¼‰ï¼Œ
-# æˆ–è€…ä½¿ç”¨ç™½åå•ipä¸­è½¬æœåŠ¡å™¨
-xunfei_yuyin:
-    appid: '5c540c39'
-    asr_api_key: '859bc21e90c64d97fae77695579eb05e'  # è¯­éŸ³å¬å†™
-    tts_api_key: '680c0eba7c1752503fa0a6ac971ce2cd'  # åœ¨çº¿è¯­éŸ³åˆæˆ
-    voice: 'xiaoyan'  # å…¨éƒ¨å¯é€‰ï¼šhttp://suo.im/51dhCS
-    url: 'http://api.musiiot.top/stt.php' # ç™½åå•ipä¸­è½¬æœåŠ¡å™¨ï¼ˆå¯é€‰ï¼‰
 
-# é˜¿é‡Œäº‘è¯­éŸ³
-# appKeyåŠtokenéœ€å‰å¾€
+# Ñ¶·ÉÓïÒô·şÎñ
+# appid ¼° api_key ĞèÇ°Íù
+# https://xfyun.cn/
+# ×¢²á´´½¨ÊÇWebAPIÓ¦ÓÃ£¬²¢¸³ÓèÁ÷Ê½ÓïÒôÌıĞ´¼°ÔÚÏßÓïÒôºÏ³ÉÁ½ÏîÄÜÁ¦
+xunfei_yuyin:
+    appid: '5ff95aa4'
+    api_key: '4de869da0fb5c85b1e58fde2af7dda8a'  # ÓïÒôÌıĞ´
+    api_secret: 'd54df55708abaf6c823afaa929eba332'
+    voice: 'xiaoyan'  # È«²¿¿ÉÑ¡£ºhttps://console.xfyun.cn/services/tts
+
+# °¢ÀïÔÆÓïÒô
+# appKey¼°tokenĞèÇ°Íù
 # https://ai.aliyun.com/nls
-# æ³¨å†Œè·å–
+# ×¢²á»ñÈ¡
 ali_yuyin:
     appKey: 'x04ujKJ7oRvDgt6h'
     token: '7237029b69f146e89bac004bb61c09ee'
-    voice: 'xiaogang' #xiaoyunä¸ºå¥³ç”Ÿï¼Œxiaogangä¸ºç”·ç”Ÿ, å…¨éƒ¨å¯é€‰ï¼šhttp://suo.im/4x8RzQ
+    voice: 'xiaogang' #xiaoyunÎªÅ®Éú£¬xiaogangÎªÄĞÉú, È«²¿¿ÉÑ¡£ºhttp://suo.im/4x8RzQ
 
-# è…¾è®¯äº‘è¯­éŸ³
-# å…ˆå‰å¾€ https://cloud.tencent.com
-# æ³¨å†Œè¯­éŸ³è¯†åˆ«å’Œè¯­éŸ³åˆæˆæœåŠ¡ï¼Œè·å¾— appid ï¼Œç„¶ååœ¨è®¿é—®ç®¡ç†
+# ÌÚÑ¶ÔÆÓïÒô
+# ÏÈÇ°Íù https://cloud.tencent.com
+# ×¢²áÓïÒôÊ¶±ğºÍÓïÒôºÏ³É·şÎñ£¬»ñµÃ appid £¬È»ºóÔÚ·ÃÎÊ¹ÜÀí
 # https://console.cloud.tencent.com/cam
-# åˆ›å»ºå­ç”¨æˆ·ï¼Œè®¿é—®APIå¯†é’¥è·å¾— secretid å’Œ secret_key
-# æ³¨å†Œè·å–
+# ´´½¨×ÓÓÃ»§£¬·ÃÎÊAPIÃÜÔ¿»ñµÃ secretid ºÍ secret_key
+# ×¢²á»ñÈ¡
 tencent_yuyin:
-    appid: '1301273437'
-    secretid: 'AKIDKSN3UgThLq7SaVbeWDgzBAxdHVf58Dxf'
-    secret_key: 'fHo6DxWsfVYfZGAtzta6QaWgnBLJ5ShD'
-    region: 'ap-guangzhou'  # æœåŠ¡åœ°åŒºï¼Œæœ‰æ•ˆå€¼ï¼šhttp://suo.im/4EEQYD
-    voiceType: 0            # 0: å¥³å£°1ï¼›1ï¼šç”·ç”Ÿ1ï¼›2ï¼šç”·ç”Ÿ2
-    language: 1             # 1: ä¸­æ–‡ï¼›2ï¼šè‹±æ–‡
+    appid: '1253537070'
+    secretid: 'xxxxxxxxxxxxx'
+    secret_key: 'xxxxxxxxxxxxx'
+    region: 'ap-guangzhou'  # ·şÎñµØÇø£¬ÓĞĞ§Öµ£ºhttp://suo.im/4EEQYD
+    voiceType: 0            # 0: Å®Éù1£»1£ºÄĞÉú1£»2£ºÄĞÉú2
+    language: 1             # 1: ÖĞÎÄ£»2£ºÓ¢ÎÄ
 
-# èŠå¤©æœºå™¨äºº
-# å¯é€‰å€¼ï¼š
-# tuling    - å›¾çµæœºå™¨äºº
-# emotibot  - å°å½±æœºå™¨äºº
-robot: tuling
+# HanTTS ·şÎñ
+han-tts:
+    # ËùÊ¹ÓÃµÄÓïÒô¿âÄ¿Â¼
+    # Ğè·ÅÔÚ ~/.wukong/ Ä¿Â¼ÏÂ
+    # Ò²Ö§³Ö×ÔĞĞÂ¼ÖÆ£¬Ïê¼û£º
+    # https://github.com/junzew/HanTTS
+    voice: 'syllables' 
 
-# å›¾çµæœºå™¨äºº	
+# NLU ÒıÇæ
+# ¿ÉÑ¡Öµ£º
+# unit      - °Ù¶È UNIT
+nlu_engine: unit
+
+# °Ù¶È UNIT
+unit:
+    # ÔÚ https://ai.baidu.com/unit Àï×¢²á´´½¨Ò»¸ö»úÆ÷ÈË
+    # µÃµ½Ò»¸ö»úÆ÷ÈË ID £¬
+    # È»ºó·ÃÎÊÏÂÃæÒ³Ãæ»ñÈ¡ API Key ºÍ Secret Key£º
+    # https://console.bce.baidu.com/ai/#/ai/unit/app/list
+    service_id: '23521219'  # »úÆ÷ÈËID
+    api_key: 'iWBPeyiataCnokT9wFTlgUbo'
+    secret_key: 'xxUwYSGFo86otYz3da2y2zrAWDR5lUvt'
+    
+
+# ÁÄÌì»úÆ÷ÈË
+# ¿ÉÑ¡Öµ£º
+# anyq      - AnyQ£¨ÍÆ¼ö£©
+# tuling    - Í¼Áé»úÆ÷ÈË
+# emotibot  - Ğ¡Ó°»úÆ÷ÈË
+robot: emotibot
+
+# AnyQ »úÆ÷ÈË
+anyq:
+    host: 0.0.0.0
+    port: 8999
+    solr_port: 8900  # solr µÄ¶Ë¿ÚºÅ
+    # ÖÃĞÅ¶È£¨confidence£©Ğè´ïµ½µÄãĞÖµ£¬
+    # ´ï²»µ½¾ÍÈÏÎª²»ÃüÖĞ
+    threshold: 0.6
+    # Èç¹ûÃ»ÓĞÃüÖĞ£¬Ê¹ÓÃÆäËû¶µµ×µÄ»úÆ÷ÈË
+    # Èç¹û²»ÏëÊ¹ÓÃ¶µµ×£¬¿ÉÒÔÉèÎª null
+    secondary: tuling
+
+# Í¼Áé»úÆ÷ÈË	
 # http://www.tuling123.com
 tuling:
-    tuling_key: '27a41fadd03e4c4ba483b45dbc55ee62'  # å»ºè®®ä½¿ç”¨è‡ªå·±çš„å›¾çµæœºå™¨äººAPI Key
+    tuling_key: '98f95153fb5c4684a5602b909949ba61'  # ½¨ÒéÊ¹ÓÃ×Ô¼ºµÄÍ¼Áé»úÆ÷ÈËAPI Key
 
-# å°å½±æœºå™¨äºº
+# Ğ¡Ó°»úÆ÷ÈË
 # http://botfactory.emotibot.com/
 emotibot:
-    appid: '01509123b03f5484cb49cbd8a4bdafd4'
-    active_mode: true  # æ˜¯å¦ä¸»åŠ¨è¯´æ›´å¤šç‚¹è¯
+    appid: 'f07552375745950db7b968dfdc3f451a'
 
-# é‚®ç®±
-# å¦‚æœä½¿ç”¨ç½‘æ˜“é‚®ç®±ï¼Œè¿˜éœ€è®¾ç½®å…è®¸ç¬¬ä¸‰æ–¹å®¢æˆ·ç«¯æ”¶å‘é‚®ä»¶
+# ÓÊÏä
+# Èç¹ûÊ¹ÓÃÍøÒ×ÓÊÏä£¬»¹ĞèÉèÖÃÔÊĞíµÚÈı·½¿Í»§¶ËÊÕ·¢ÓÊ¼ş
 email:
-    address: 'zx5zx5123@163.com'
-    password: 'hwj15867183053'  # å¦‚æœæ˜¯ç½‘æ˜“é‚®ç®±ï¼Œé¡»å¡«å†™åº”ç”¨æˆæƒå¯†ç è€Œä¸æ˜¯ç™»å½•å¯†ç ï¼
+    enable: true
+    address: '1584124205@qq.com'
+    password: 'Fgh1584124'  # Èç¹ûÊÇÍøÒ×ÓÊÏä£¬ĞëÌîĞ´Ó¦ÓÃÊÚÈ¨ÃÜÂë¶ø²»ÊÇµÇÂ¼ÃÜÂë£¡
     smtp_server: 'smtp.163.com'
-    smtp_port: '25'  # è¿™é‡Œå¡«å†™éSSLåè®®ç«¯å£å·
+    smtp_port: '25'  # ÕâÀïÌîĞ´·ÇSSLĞ­Òé¶Ë¿ÚºÅ
     imap_server: 'imap.163.com'
-    imap_port: '143'  # è¿™é‡Œå¡«å†™éSSLåè®®ç«¯å£å·
-    pop3_server: 'pop.163.com'
-    pop3_port: '110'    
-    read_email_title: true  # å½“æœ‰é‚®ä»¶æ—¶ï¼Œæ˜¯å¦æœ—è¯»é‚®ä»¶æ ‡é¢˜
+    imap_port: '143'  # ÕâÀïÌîĞ´·ÇSSLĞ­Òé¶Ë¿ÚºÅ    
+    read_email_title: true  # µ±ÓĞÓÊ¼şÊ±£¬ÊÇ·ñÀÊ¶ÁÓÊ¼ş±êÌâ
 
-# æ‹ç…§
-# éœ€æ¥å…¥æ‘„åƒå¤´æ‰èƒ½ä½¿ç”¨
-# æ³¨æ„ï¼šæœ¬æ’ä»¶åªåœ¨æ ‘è“æ´¾5MPæ‘„åƒå¤´æˆ–è€…USBæ‘„åƒå¤´ä¸Šæµ‹è¯•è¿‡
+# ÅÄÕÕ
+# Ğè½ÓÈëÉãÏñÍ·²ÅÄÜÊ¹ÓÃ
 camera:
     enable: false
-    type: 0
-    dest_path: "/home/pi/Users/tangshifu/Photos" # ä¿å­˜ç›®å½•
-    quality: 5              # æˆåƒè´¨é‡ï¼ˆ0~100ï¼‰
-    vertical_flip: true     # ç«–ç›´ç¿»è½¬
-    horizontal_flip: false  # æ°´å¹³ç¿»è½¬
-    count_down: 3           # å€’è®¡æ—¶ï¼ˆç§’ï¼‰ï¼Œä»…å½“å¼€å¯å€’è®¡æ—¶æ—¶æœ‰æ•ˆ
-    sendToUser: true        # æ‹å®Œç…§æ˜¯å¦å‘é€åˆ°é‚®ç®±
-    sound: true             # æ˜¯å¦æœ‰æ‹ç…§éŸ³æ•ˆ
-    usb_camera: true      # æ˜¯å¦æ˜¯ USB æ‘„åƒå¤´
+    type: 0                 # ÉãÏñÍ·ÀàĞÍ 0£ºusb_camera£¬1£ºÊ÷İ®ÅÉ 5MP ÉãÏñÍ·£¬2£ºMac OSX ÉãÏñÍ·
+                            # ¶ÔÓÚ Mac OSX ÉãÏñÍ·£¬ÇëÏÈ°²×° imagesnap ¡£ÀıÈç Mac OSX£º brew install imagesnap
+    dest_path: "/Users/panweizhou/Pictures/" # ±£´æÄ¿Â¼
+    quality: 5              # ³ÉÏñÖÊÁ¿£¨0~100£©£¬²»Ö§³Ö imagesnap
+    vertical_flip: true     # ÊúÖ±·­×ª£¬²»Ö§³Ö imagesnap
+    horizontal_flip: false  # Ë®Æ½·­×ª£¬²»Ö§³Ö imagesnap
+    count_down: 3           # µ¹¼ÆÊ±£¨Ãë£©£¬½öµ±¿ªÆôµ¹¼ÆÊ±Ê±ÓĞĞ§
+    sound: true             # ÊÇ·ñÓĞÅÄÕÕÒôĞ§
+    usb_camera: false       # ÊÇ·ñÊÇ USB ÉãÏñÍ·£¨ÒÑ·ÏÆú£¬ÇëÊ¹ÓÃ type£©
 
+## ±¾µØÒôÀÖ²å¼ş
+LocalPlayer:
+    path: "/Users/panweizhou/Music"  # ±¾µØÒôÀÖ´æ·ÅÂ·¾¶
+
+
+statistic: true # ÊÇ·ñ¿ªÆôÉÏ±¨
 
 #######################
-# ç¬¬ä¸‰æ–¹æ’ä»¶çš„é…ç½®
+# µÚÈı·½²å¼şµÄÅäÖÃ
 #######################
 
-# åœ¨è¿™é‡Œæ”¾ç¬¬ä¸‰æ–¹æ’ä»¶çš„é…ç½®
+# ÔÚÕâÀï·ÅµÚÈı·½²å¼şµÄÅäÖÃ
 # https://github.com/wzpan/wukong-contrib
 
-# ç½‘æ˜“éŸ³ä¹
-netease_music:
-    account: '15867183053' # åªæ”¯æŒæ‰‹æœºè´¦æˆ·
-    password: 'hwj15867183053'
-    report: true    # æ˜¯å¦æ’­æŠ¥å³å°†æ’­æ”¾çš„éŸ³ä¹
+# °Ù¶ÈFM
+baidufm:
+    channel: 14
 
-
-# å¤©æ°”
-# ä½¿ç”¨å¿ƒçŸ¥å¤©æ°”çš„æ¥å£
+# ÌìÆø
+# Ê¹ÓÃĞÄÖªÌìÆøµÄ½Ó¿Ú
 # https://www.seniverse.com/
 weather:
-    key: 'Pk4FqtHkVB5sEI3kK'
-    location: 'æ­å·'
+    enable: true
+    key: 'S4Sj9s-7Ly4f5dULW
+'
 
-baidufm:
-    channel: 35  # é»˜è®¤é¢‘é“ï¼Œå¦‚æœæ²¡æœ‰é…ç½®ï¼Œé»˜è®¤é€‰æ‹©90åé¢‘é“ï¼Œæ›´å¤šé¢‘é“è§ä¸‹è¡¨
+
